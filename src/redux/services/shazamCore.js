@@ -21,20 +21,31 @@ fetch("https://shazam-core.p.rapidapi.com/v1/charts/world", options)
 export const shazamCoreApi = createApi({
   reducerPath: "shazamCoreApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://shazam-core.p.rapidapi.com/v1",
+    baseUrl: "https://shazam-core.p.rapidapi.com",
     prepareHeaders: (headers) => {
       headers.set(
         "X-RapidAPI-Key",
-        "002b60c92emsh61edabc350f3dd5p1943d5jsn66cda29594f1"
+        "ce2c81b6f3msh94a06de6cd2f3d7p105d1djsn2774bef18d05"
       );
       return headers;
     },
   }),
   endpoints: (builder) => ({
-    getTopCharts: builder.query({ query: () => "/charts/world" }),
+    getTopCharts: builder.query({ query: () => "/v1/charts/world" }),
     getSongDetails: builder.query({
-      query: (songid) => `/tracks/details?track_id=${songid}`,
+      query: (songid) => `/v1/tracks/details?track_id=${songid}`,
+    }),
+    getSongRelated: builder.query({
+      query: (songid) => `v1/tracks/related?track_id=${songid}`,
+    }),
+    getArtistDetails: builder.query({
+      query: (artistId) => `/v2/artists/details?artist_id=${artistId}`,
     }),
   }),
 });
-export const { useGetTopChartsQuery, useGetSongDetailsQuery } = shazamCoreApi;
+export const {
+  useGetSongRelatedQuery,
+  useGetTopChartsQuery,
+  useGetSongDetailsQuery,
+  useGetArtistDetailsQuery,
+} = shazamCoreApi;
