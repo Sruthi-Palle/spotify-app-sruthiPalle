@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 /* Active Navigation Link */
+
 .active {
   @apply text-cyan-500;
 }
