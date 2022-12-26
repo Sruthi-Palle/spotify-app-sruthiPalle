@@ -60,6 +60,7 @@ const TopPlay = () => {
   });
 
   const topPlays = data?.slice(0, 5);
+  console.log(topPlays);
 
   const handlePauseClick = () => {
     dispatch(playPause(false));
@@ -83,17 +84,20 @@ const TopPlay = () => {
           </Link>
         </div>
         <div className="mt-4 flex flex-col gap-1">
-          {topPlays?.map((song, i) => (
-            <TopChartCard
-              song={song}
-              i={i}
-              key={song.key}
-              isPlaying={isPlaying}
-              activeSong={activeSong}
-              handlePauseClick={handlePauseClick}
-              handlePlayClick={() => handlePlayClick(song, i)}
-            />
-          ))}
+          {topPlays?.map((song, i) => {
+            console.log(song.artists);
+            return (
+              <TopChartCard
+                song={song}
+                i={i}
+                key={song.key}
+                isPlaying={isPlaying}
+                activeSong={activeSong}
+                handlePauseClick={handlePauseClick}
+                handlePlayClick={() => handlePlayClick(song, i)}
+              />
+            );
+          })}
         </div>
       </div>
       <div className="w-full flex flex-col mt-8">
@@ -112,7 +116,7 @@ const TopPlay = () => {
           modules={[FreeMode]}
           className="mt-4 "
         >
-          {topPlays?.map((song, i) => (
+          {topPlays?.map((song) => (
             <SwiperSlide
               key={song?.key}
               style={{ width: "25%", height: "auto" }}
