@@ -13,6 +13,7 @@ const ArtistDetails = () => {
     isFetching: isFetchingArtistDetails,
     error,
   } = useGetArtistDetailsQuery(artistId);
+  console.log(artistData);
   const artistsTopSongs = artistData?.data[0]?.views["top-songs"]?.data;
   console.log(artistData?.data[0]?.views["top-songs"]?.data);
   console.log(artistData);

@@ -28,15 +28,15 @@ const TopChartCard = ({
         />
         <div className="flex-1 flex flex-col justify-center mx-3">
           <Link to={`/songs/${song.key}`}>
-            <p className="text-xl font-bold text-white hover:bg-[#342e4e] rounded-lg pl-4 truncate">
+            <p className="text-xl font-bold text-white hover:bg-[#342e4e] rounded-lg pl-4">
               {song?.title}{" "}
             </p>
           </Link>
-          <Link to={`/artists/${song?.artists[0].adamid}`}>
-            <p className="text-base  text-gray-300 mt-1 hover:bg-[#342e4e] rounded-lg pl-4 truncate">
-              {song?.subtitle}{" "}
-            </p>
-          </Link>
+
+          <p className="text-base  text-gray-300 mt-1 rounded-lg pl-4">
+            {song?.subtitle.slice(0, 20)}
+            {"......"}
+          </p>
         </div>
       </div>
       <PlayPause
@@ -61,7 +61,6 @@ const TopPlay = () => {
 
   const topPlays = data?.slice(0, 5);
   console.log(topPlays);
-
   const handlePauseClick = () => {
     dispatch(playPause(false));
   };
@@ -84,55 +83,44 @@ const TopPlay = () => {
           </Link>
         </div>
         <div className="mt-4 flex flex-col gap-1">
-          {topPlays?.map((song, i) => {
-            console.log(song.artists);
-            return (
-              <TopChartCard
-                song={song}
-                i={i}
-                key={song.key}
-                isPlaying={isPlaying}
-                activeSong={activeSong}
-                handlePauseClick={handlePauseClick}
-                handlePlayClick={() => handlePlayClick(song, i)}
-              />
-            );
-          })}
+          {topPlays?.map((song, i) => (
+            <TopChartCard
+              song={song}
+              i={i}
+              key={song.key}
+              isPlaying={isPlaying}
+              activeSong={activeSong}
+              handlePauseClick={handlePauseClick}
+              handlePlayClick={() => handlePlayClick(song, i)}
+            />
+          ))}
         </div>
       </div>
-      <div className="w-full flex flex-col mt-8">
+
+      {/*<div className="w-full flex flex-col mt-8">
         <div className="flex flex-row justify-between items-center">
           <h2 className="text-white font-bold text-2xl">Top Artists</h2>
           <Link to="/top-artists">
             <p className="text-gray-300 text-base cursor-pointer">See more</p>
           </Link>
         </div>
-        <Swiper
-          slidesPerView="auto"
-          spaceBetween={15}
-          freeMode
-          centeredSlides
-          centeredSlidesBounds
-          modules={[FreeMode]}
-          className="mt-4 "
-        >
-          {topPlays?.map((song) => (
-            <SwiperSlide
-              key={song?.key}
-              style={{ width: "25%", height: "auto" }}
-              className="shadow-lg rounded-full animate-slideright"
-            >
-              <Link to={`/artists/${song?.artists[0].adamid}`}>
-                <img
-                  src={song?.images.background}
-                  alt="name"
-                  className="rounded-full w-full object-cover"
-                />
-              </Link>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
+        
+          {topPlays?.map((song, i) => {
+            console.log(song[0]);
+            return (
+              
+                <Link to={`/artists/${song[0]?.artists[0].adamid}`}>
+                  <img
+                    src={song[0]?.images.background}
+                    alt="name"
+                    className="rounded-full w-full object-cover"
+                  />
+                </Link>
+              
+            );
+          })}
+        
+      </div>*/}
     </div>
   );
 };
