@@ -30,15 +30,15 @@ const Sidebar = () => {
         <img src={logo} alt="logo" className="w-full h-14 object-contain" />
         <NavLinks />
       </div>
-      <div className="absolute md:hidden block top-6 right-3">
+      <div className="absolute md:hidden block right-3">
         {mobileMenuOpen ? (
           <RiCloseLine
-            className="w-6 h-6 text-white  mt-9 mr-2"
+            className="w-7 h-7 text-white  mt-8 mr-2"
             onClick={() => setMobileMenuOpen(false)}
           />
         ) : (
           <HiOutlineMenu
-            className="w-6 h-6 text-white mt-9 mr-2"
+            className="w-7 h-7 text-white mt-8 mr-2"
             onClick={() => setMobileMenuOpen(true)}
           />
         )}
